@@ -1,1 +1,2 @@
-# pertemuan-10
+Profil: Aplikasi SIPGN
+Deskripsi: Aplikasi Makan Bergizi Gratis
