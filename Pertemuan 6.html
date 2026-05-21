@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum Laravel - Pemrograman Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --laravel-red: #FF2D20;
+            --laravel-dark: #1A202C;
+            --laravel-light: #F7FAFC;
+            --success: #38A169;
+            --warning: #D69E2E;
+            --info: #3182CE;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .laravel-header {
+            background: linear-gradient(135deg, var(--laravel-red), var(--laravel-dark));
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .module-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .card-header-custom {
+            background: linear-gradient(to right, var(--laravel-red), var(--laravel-dark));
+            color: white;
+            border: none;
+            padding: 1.5rem;
+        }
+        
+        .code-example {
+            background: #1a1a1a;
+            color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            border-left: 4px solid var(--laravel-red);
+        }
+        
+        .command-box {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-left: 4px solid var(--success);
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .note-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .step-box {
+            background: linear-gradient(135deg, #e8f5e8, #f0f4ff);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px dashed #4CAF50;
+        }
+        
+        .structure-tree {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Fira Code', monospace;
+            border: 1px solid #dee2e6;
+        }
+        
+        .route-table {
+            font-size: 0.9rem;
+        }
+        
+        .route-table th {
+            background-color: var(--laravel-red);
+            color: white;
+        }
+        
+        .nav-modules .nav-link {
+            color: var(--laravel-dark);
+            border-radius: 8px;
+            margin: 0.2rem;
+            font-weight: 500;
+        }
+        
+        .nav-modules .nav-link.active {
+            background: linear-gradient(to right, var(--laravel-red), var(--laravel-dark));
+            color: white;
+        }
+        
+        .progress-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .level-badge {
+            background: var(--laravel-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .mvc-diagram {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .mvc-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .mvc-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .mvc-arrow {
+            font-size: 2rem;
+            color: var(--laravel-red);
+        }
+        
+        .library-management {
+            background: linear-gradient(135deg, #fff3e0, #fce4ec);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid #ff9800;
+        }
+        
+        .custom-route-box {
+            background: linear-gradient(135deg, #e8f5e9, #e0f2f1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 2px solid #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--laravel-dark);">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fab fa-laravel me-2"></i>Praktikum Laravel
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#setup">Setup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mvc">MVC Concept</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#crud">Sample CRUD Operations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#library">Library Management</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="laravel-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">
+                        <i class="fab fa-laravel me-3"></i>
+                        Praktikum Pemrograman Web
+                    </h1>
+                    <p class="lead mb-4">Panduan menggunakan framework Laravel</p>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="badge bg-light text-dark fs-6">11 Steps</span>
+                        <span class="badge bg-light text-dark fs-6">Command Examples</span>
+                        <span class="badge bg-light text-dark fs-6">Code Snippets</span>
+                        <span class="badge bg-light text-dark fs-6">Best Practices</span>
+                        <span class="badge bg-light text-dark fs-6">Library Management</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fab fa-laravel fa-10x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <!-- Progress Section -->
+        <div class="progress-section">
+            <h3 class="mb-4">Peta Pembelajaran Laravel</h3>
+            <div class="row text-center">
+                <div class="col-md-3 mb-3">
+                    <div class="level-badge">
+                        <i class="fas fa-cogs me-2"></i>Setup & Environment
+                    </div>
+                    <p class="mt-2 mb-0">Step 1-6</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="level-badge">
+                        <i class="fas fa-code me-2"></i>CRUD Implementation
+                    </div>
+                    <p class="mt-2 mb-0">Step 7-10</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="level-badge">
+                        <i class="fas fa-rocket me-2"></i>Testing & Deployment
+                    </div>
+                    <p class="mt-2 mb-0">Step 11</p>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="level-badge">
+                        <i class="fas fa-book me-2"></i>Library Management
+                    </div>
+                    <p class="mt-2 mb-0">Additional</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3 mb-4">
+                <div class="card">
+                    <div class="card-header card-header-custom">
+                        <h5 class="mb-0">Daftar Steps</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav flex-column nav-modules">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#step1">1. Persiapan Composer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step2">2. Konsep MVC</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step3">3. Setup Directory</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step4">4. Create Project</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step5">5. Development Server</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step6">6. Pengantar Laravel</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step7">7. Membuat Controller</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step8">8. Routing Resource</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step9">9. Blade Templates</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step10">10. Controller Logic</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#step11">11. Menjalankan Server</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#library-management">Library Management</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#custom-routes">Custom Routes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#migration">Migration</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#tips-crud">Tips & Trik</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#tugas-laravel-dasar">Tugas</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <!-- Step 1: Persiapan Composer -->
+                <section id="step1" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-check-circle me-2"></i>Step 1: Memastikan Composer</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Pastikan Composer sudah terinstall dengan benar di sistem Anda.</p>
+                        
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Verifikasi Instalasi:</h6>
+                            <pre><code>composer --version</code></pre>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-lightbulb me-2"></i>Tips:</h6>
+                            <ul>
+                                <li>Jika Composer belum terinstall, download dari <a href="https://getcomposer.org/" target="_blank">getcomposer.org</a></li>
+                                <li>Pastikan PHP sudah ditambahkan ke PATH environment variable</li>
+                                <li>Minimum PHP version: 8.0 atau yang direkomendasikan Laravel</li>
+                            </ul>
+                        </div>
+
+                        <div class="warning-box">
+                            <h6><i class="fas fa-exclamation-triangle me-2"></i>Peringatan:</h6>
+                            <p>Pastikan tidak ada conflict dengan Composer version lama. Gunakan selalu versi terbaru untuk kompatibilitas dengan Laravel.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 2: Konsep MVC -->
+                <section id="step2" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-sitemap me-2"></i>Step 2: Diskusi Konsep MVC dalam Laravel</h3>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>MVC (Model-View-Controller)</strong> adalah architectural pattern yang memisahkan aplikasi menjadi tiga komponen utama.</p>
+
+                        <div class="mvc-diagram">
+                            <h4>Arsitektur MVC dalam Laravel</h4>
+                            <div class="mvc-flow">
+                                <div class="mvc-item">
+                                    <i class="fas fa-database fa-3x text-primary mb-3"></i>
+                                    <h5>Model</h5>
+                                    <p>Mewakili data dan business logic</p>
+                                    <small>app/Models/</small>
+                                </div>
+                                <div class="mvc-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                                <div class="mvc-item">
+                                    <i class="fas fa-cogs fa-3x text-success mb-3"></i>
+                                    <h5>Controller</h5>
+                                    <p>Menangani request dan response</p>
+                                    <small>app/Http/Controllers/</small>
+                                </div>
+                                <div class="mvc-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                                <div class="mvc-item">
+                                    <i class="fas fa-eye fa-3x text-warning mb-3"></i>
+                                    <h5>View</h5>
+                                    <p>Menampilkan data ke user</p>
+                                    <small>resources/views/</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5>Alur Kerja MVC di Laravel:</h5>
+                        <ol>
+                            <li><strong>Request</strong> dari user masuk melalui Route</li>
+                            <li><strong>Route</strong> mengarahkan request ke Controller yang sesuai</li>
+                            <li><strong>Controller</strong> memproses request dan berinteraksi dengan Model</li>
+                            <li><strong>Model</strong> berinteraksi dengan database dan mengembalikan data</li>
+                            <li><strong>Controller</strong> menerima data dari Model dan mengirim ke View</li>
+                            <li><strong>View</strong> menampilkan data dalam format HTML ke user</li>
+                        </ol>
+
+                        <div class="code-example">
+                            <h6><i class="fas fa-code me-2"></i>Contoh Alur MVC:</h6>
+                            <pre><code>// routes/web.php
+Route::get('/users', [UserController::class, 'index']);
+
+// app/Http/Controllers/UserController.php
+public function index()
+{
+    $users = User::all(); // Model
+    return view('users.index', compact('users')); // View
+}
+
+// resources/views/users/index.blade.php
+@foreach($users as $user)
+    {{ $user->name }}
+@endforeach</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 3: Setup Directory -->
+                <section id="step3" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-folder me-2"></i>Step 3: Navigasi ke Direktori Project</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Pindah ke direktori yang akan menampung project Laravel Anda.</p>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Untuk XAMPP:</h6>
+                            <pre><code>cd C:\xampp\htdocs</code></pre>
+                        </div>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Untuk Laragon:</h6>
+                            <pre><code>cd C:\laragon\www</code></pre>
+                        </div>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Untuk Linux/Mac:</h6>
+                            <pre><code>cd /var/www/html</code></pre>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-lightbulb me-2"></i>Tips Direktori:</h6>
+                            <ul>
+                                <li>Gunakan path yang sesuai dengan environment Anda</li>
+                                <li>Pastikan Anda memiliki permission write di direktori tersebut</li>
+                                <li>Buat folder khusus untuk organisasi project yang lebih baik</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 4: Create Project -->
+                <section id="step4" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-rocket me-2"></i>Step 4: Membuat Project Laravel Baru</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Buat project Laravel baru menggunakan Composer.</p>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Create New Project:</h6>
+                            <pre><code>composer create-project laravel/laravel praktikum</code></pre>
+                        </div>
+
+                        <div class="step-box">
+                            <h5><i class="fas fa-info-circle me-2"></i>Proses yang terjadi:</h5>
+                            <ul>
+                                <li>Composer akan mendownload Laravel framework dan dependencies</li>
+                                <li>Membuat struktur folder Laravel yang lengkap</li>
+                                <li>Menginstall semua package yang diperlukan</li>
+                                <li>Membuat file environment (.env) dari template</li>
+                            </ul>
+                        </div>
+
+                        <div class="warning-box">
+                            <h6><i class="fas fa-exclamation-triangle me-2"></i>Peringatan:</h6>
+                            <p>Proses ini membutuhkan koneksi internet dan mungkin memakan waktu beberapa menit tergantung kecepatan internet.</p>
+                        </div>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Masuk ke Directory Project:</h6>
+                            <pre><code>cd praktikum</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Library Management Section -->
+                <section id="library-management" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-sync-alt me-2"></i>Library Management dengan Composer</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Mengelola library/packages dalam project Laravel menggunakan Composer.</p>
+
+                        <div class="library-management">
+                            <h5><i class="fas fa-sync-alt me-2"></i>1. Cara Upgrade Library via CMD</h5>
+                            <p>Dua metode upgrade:</p>
+                            
+                            <div class="command-box">
+                                <h6><i class="fas fa-arrow-up me-2"></i>a. Upgrade satu library tertentu:</h6>
+                                <pre><code>composer update vendor/nama-library</code></pre>
+                                <p>Contoh:</p>
+                                <pre><code>composer update barryvdh/laravel-dompdf</code></pre>
+                            </div>
+
+                            <div class="command-box">
+                                <h6><i class="fas fa-arrow-up me-2"></i>b. Upgrade semua library sekaligus:</h6>
+                                <pre><code>composer update</code></pre>
+                            </div>
+
+                            <div class="warning-box">
+                                <h6><i class="fas fa-exclamation-triangle me-2"></i>Catatan:</h6>
+                                <p>Pastikan sistem kompatibel dengan Laravel versi kamu, karena upgrade besar bisa menyebabkan konflik versi.</p>
+                            </div>
+                        </div>
+
+                        <div class="library-management">
+                            <h5><i class="fas fa-arrow-down me-2"></i>2. Cara Downgrade Library via CMD</h5>
+                            <p>Untuk downgrade (menurunkan versi library):</p>
+                            
+                            <div class="step-box">
+                                <h6><i class="fas fa-edit me-2"></i>1. Edit file composer.json</h6>
+                                <p>Ubah versi library secara manual. Misalnya:</p>
+                                <pre><code>"require": {
+    "barryvdh/laravel-dompdf": "^1.0"
+}</code></pre>
+                                <p>Ganti menjadi:</p>
+                                <pre><code>"require": {
+    "barryvdh/laravel-dompdf": "0.9.*"
+}</code></pre>
+                            </div>
+
+                            <div class="command-box">
+                                <h6><i class="fas fa-terminal me-2"></i>2. Jalankan perintah:</h6>
+                                <pre><code>composer update barryvdh/laravel-dompdf</code></pre>
+                            </div>
+
+                            <div class="note-box">
+                                <h6><i class="fas fa-lightbulb me-2"></i>Keterangan:</h6>
+                                <p>Tanda <code>^</code> artinya "boleh versi yang lebih baru tapi tidak merusak kompatibilitas", sedangkan <code>*</code> artinya "boleh versi mana saja dalam rentang tersebut".</p>
+                            </div>
+                        </div>
+
+                        <div class="library-management">
+                            <h5><i class="fas fa-trash me-2"></i>3. Cara Menghapus Library</h5>
+                            <p>Jika library sudah tidak diperlukan:</p>
+                            
+                            <div class="command-box">
+                                <pre><code>composer remove vendor/nama-library</code></pre>
+                                <p>Contoh:</p>
+                                <pre><code>composer remove barryvdh/laravel-dompdf</code></pre>
+                            </div>
+
+                            <div class="step-box">
+                                <h6><i class="fas fa-info-circle me-2"></i>Composer akan otomatis:</h6>
+                                <ul>
+                                    <li>Menghapus library dari vendor/</li>
+                                    <li>Menghapus entri di composer.json</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 5: Development Server -->
+                <section id="step5" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-server me-2"></i>Step 5: Menjalankan Development Server</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Jalankan development server built-in Laravel untuk testing.</p>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Menjalankan Server:</h6>
+                            <pre><code>php artisan serve</code></pre>
+                        </div>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Jika Port Sudah Dipakai:</h6>
+                            <pre><code>php artisan serve --port=8080</code></pre>
+                        </div>
+
+                        <div class="step-box">
+                            <h5><i class="fas fa-question-circle me-2"></i>Kapan harus menjalankan ulang php artisan serve?</h5>
+                            <ul>
+                                <li>Mengubah environment (.env)</li>
+                                <li>Mengubah konfigurasi di config/...</li>
+                                <li>Mengubah versi PHP, Composer, atau dependency di composer.json</li>
+                            </ul>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Artisan Commands untuk Cache:</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <pre><code>php artisan config:clear</code></pre>
+                                    <small>Menghapus cache konfigurasi agar Laravel membaca ulang .env</small>
+                                </div>
+                                <div class="col-md-6">
+                                    <pre><code>php artisan config:cache</code></pre>
+                                    <small>Membuat cache konfigurasi agar aplikasi lebih cepat</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Generate Application Key (Optional):</h6>
+                            <pre><code>php artisan key:generate</code></pre>
+                            <small>Untuk enkripsi session, cookie, atau password reset token</small>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 6: Pengantar Laravel -->
+                <section id="step6" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-book me-2"></i>Step 6: Penyampaian Pengantar Laravel</h3>
+                    </div>
+                    <div class="card-body">
+                        <h5>Konsep Utama Laravel:</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mvc-item">
+                                    <h6><i class="fas fa-route text-primary"></i> Routing</h6>
+                                    <p>Mengatur URL dan endpoint aplikasi</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mvc-item">
+                                    <h6><i class="fas fa-cogs text-success"></i> Controller</h6>
+                                    <p>Menangani logika bisnis aplikasi</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mvc-item">
+                                    <h6><i class="fas fa-database text-info"></i> Model</h6>
+                                    <p>Interaksi dengan database</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mvc-item">
+                                    <h6><i class="fas fa-eye text-warning"></i> View (Blade)</h6>
+                                    <p>Tampilan HTML untuk user</p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mvc-item">
+                                    <h6><i class="fas fa-table text-danger"></i> Migration</h6>
+                                    <p>Mengatur struktur database</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4">Struktur Directory Laravel:</h5>
+                        <div class="structure-tree">
+                            <pre><code>.
+├── <span class="text-primary">.env</span>                 # Environment variables (DB, SMTP, dll)
+├── <span class="text-success">public/</span>              # Folder yang dapat diakses user
+│   ├── css/
+│   ├── js/
+│   ├── assets/
+│   └── index.php
+├── <span class="text-info">app/</span>                 # Controller, Model, Middleware
+│   ├── Http/
+│   │   └── Controllers/
+│   ├── Models/
+│   └── Providers/
+├── <span class="text-warning">routes/</span>             # Definisi URL (web.php, api.php)
+├── <span class="text-danger">resources/views/</span>     # Template tampilan (Blade)
+└── <span class="text-primary">config/</span>             # Konfigurasi (DB, App, Auth, dll)
+    ├── app.php
+    ├── database.php
+    └── auth.php</code></pre>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-lightbulb me-2"></i>Keterangan Folder:</h6>
+                            <ul>
+                                <li><strong>.env</strong> - Menyimpan credential dan configuration sensitive</li>
+                                <li><strong>public/</strong> - Folder yang dapat diakses langsung oleh user</li>
+                                <li><strong>app/</strong> - Tempat controller, model, dan business logic</li>
+                                <li><strong>routes/</strong> - Mendefinisikan semua URL aplikasi</li>
+                                <li><strong>resources/views/</strong> - Template HTML menggunakan Blade</li>
+                                <li><strong>config/</strong> - File konfigurasi berbagai aspek aplikasi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 7: Membuat Controller -->
+                <section id="step7" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-cogs me-2"></i>Step 7: Membuat Controller dengan Artisan</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Buat controller untuk menangani logika CRUD mahasiswa.</p>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Membuat Resource Controller:</h6>
+                            <pre><code>php artisan make:controller MahasiswaController --resource</code></pre>
+                        </div>
+
+                        <div class="step-box">
+                            <h5><i class="fas fa-info-circle me-2"></i>Keterangan Perintah:</h5>
+                            <ul>
+                                <li><code>make:controller</code> - Membuat file controller baru</li>
+                                <li><code>MahasiswaController</code> - Nama controller yang dibuat</li>
+                                <li><code>--resource</code> - Otomatis membuat 7 method standar CRUD</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-example">
+                            <h6><i class="fas fa-code me-2"></i>File yang Dihasilkan (app/Http/Controllers/MahasiswaController.php):</h6>
+                            <pre><code>&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class MahasiswaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 8: Routing Resource -->
+                <section id="step8" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-route me-2"></i>Step 8: Menambahkan Route Resource</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Daftarkan route resource untuk menghubungkan URL dengan controller.</p>
+
+                        <div class="code-example">
+                            <h6><i class="fas fa-code me-2"></i>Edit routes/web.php:</h6>
+                            <pre><code>&lt;?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
+
+// Tambahkan route resource
+Route::resource('mahasiswa', MahasiswaController::class);</code></pre>
+                        </div>
+
+                        <div class="step-box">
+                            <h5><i class="fas fa-info-circle me-2"></i>Penjelasan:</h5>
+                            <p><code>Route::resource()</code> secara otomatis membuat 7 route lengkap CRUD yang diarahkan ke method sesuai nama di controller.</p>
+                        </div>
+
+                        <h5>Route yang Dihasilkan:</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered route-table">
+                                <thead>
+                                    <tr>
+                                        <th>URL</th>
+                                        <th>HTTP Method</th>
+                                        <th>Aksi</th>
+                                        <th>Method Controller</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>/mahasiswa</code></td>
+                                        <td><span class="badge bg-primary">GET</span></td>
+                                        <td>Lihat semua data</td>
+                                        <td><code>index()</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/mahasiswa/create</code></td>
+                                        <td><span class="badge bg-primary">GET</span></td>
+                                        <td>Tampilkan form tambah</td>
+                                        <td><code>create()</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/mahasiswa</code></td>
+                                        <td><span class="badge bg-success">POST</span></td>
+                                        <td>Simpan data baru</td>
+                                        <td><code>store()</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/mahasiswa/{id}</code></td>
+                                        <td><span class="badge bg-primary">GET</span></td>
+                                        <td>Tampilkan detail</td>
+                                        <td><code>show()</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/mahasiswa/{id}/edit</code></td>
+                                        <td><span class="badge bg-primary">GET</span></td>
+                                        <td>Tampilkan form edit</td>
+                                        <td><code>edit()</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/mahasiswa/{id}</code></td>
+                                        <td><span class="badge bg-warning">PUT/PATCH</span></td>
+                                        <td>Update data</td>
+                                        <td><code>update()</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/mahasiswa/{id}</code></td>
+                                        <td><span class="badge bg-danger">DELETE</span></td>
+                                        <td>Hapus data</td>
+                                        <td><code>destroy()</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-lightbulb me-2"></i>Tips Routing:</h6>
+                            <ul>
+                                <li>Gunakan <code>php artisan route:list</code> untuk melihat semua route yang tersedia</li>
+                                <li>Route name otomatis dibuat: <code>mahasiswa.index</code>, <code>mahasiswa.create</code>, dll</li>
+                                <li>Gunakan route name di view dengan helper <code>route()</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 9: Blade Templates -->
+                <section id="step9" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-file-code me-2"></i>Step 9: Membuat View (Blade Templates)</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Buat template view untuk menampilkan data mahasiswa.</p>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-folder me-2"></i>Buat Folder Views:</h6>
+                            <pre><code># Folder akan dibuat secara manual
+resources/views/mahasiswa/</code></pre>
+                        </div>
+
+                        <div class="code-example">
+                            <h6><i class="fas fa-code me-2"></i>File: resources/views/mahasiswa/index.blade.php</h6>
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Data Mahasiswa&lt;/title&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container mt-4"&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+        &lt;a href="{{ route('mahasiswa.create') }}" class="btn btn-primary mb-3"&gt;
+            Tambah Mahasiswa
+        &lt;/a&gt;
+        &lt;ul class="list-group"&gt;
+            @foreach($data as $nama)
+                &lt;li class="list-group-item"&gt;{{ $nama }}&lt;/li&gt;
+            @endforeach
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+
+                        <div class="code-example">
+                            <h6><i class="fas fa-code me-2"></i>File: resources/views/mahasiswa/create.blade.php</h6>
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Tambah Mahasiswa&lt;/title&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container mt-4"&gt;
+        &lt;h1&gt;Form Tambah Mahasiswa&lt;/h1&gt;
+        &lt;form action="{{ route('mahasiswa.store') }}" method="POST"&gt;
+            @csrf
+            &lt;div class="mb-3"&gt;
+                &lt;label for="nama" class="form-label"&gt;Nama:&lt;/label&gt;
+                &lt;input type="text" class="form-control" id="nama" name="nama" required&gt;
+            &lt;/div&gt;
+            &lt;button type="submit" class="btn btn-success"&gt;Simpan&lt;/button&gt;
+            &lt;a href="{{ route('mahasiswa.index') }}" class="btn btn-secondary"&gt;Kembali&lt;/a&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-lightbulb me-2"></i>Fitur Blade yang Digunakan:</h6>
+                            <ul>
+                                <li><code>{{ }}</code> - Output data (auto escape)</li>
+                                <li><code>@csrf</code> - CSRF protection token</li>
+                                <li><code>@foreach</code> - Looping melalui array</li>
+                                <li><code>route()</code> - Generate URL berdasarkan route name</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 10: Controller Logic -->
+                <section id="step10" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-code me-2"></i>Step 10: Mengisi Logika Dasar di Controller</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Implementasikan logika dasar pada controller untuk menangani request.</p>
+
+                        <div class="code-example">
+                            <h6><i class="fas fa-code me-2"></i>Edit app/Http/Controllers/MahasiswaController.php:</h6>
+                            <pre><code>&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class MahasiswaController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $data = ['Andi', 'Budi', 'Citra'];
+        return view('mahasiswa.index', compact('data'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('mahasiswa.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $nama = $request->input('nama');
+        return "Mahasiswa bernama &lt;b&gt;$nama&lt;/b&gt; berhasil ditambahkan!";
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        return "Menampilkan detail mahasiswa dengan ID: $id";
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit($id)
+    {
+        return "Form edit mahasiswa dengan ID: $id";
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        return "Update mahasiswa dengan ID: $id";
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        return "Hapus mahasiswa dengan ID: $id";
+    }
+    public function test()
+    {
+        // coba akses {URL}/mahasiswa/test
+        // harusnya akan kepanggil function show karena /test itu dianggap {id}
+        // harus tambahkan route terlebih dahulu
+        return "Test function";
+    }
+}</code></pre>
+                        </div>
+
+                        <div class="step-box">
+                            <h5><i class="fas fa-info-circle me-2"></i>Penjelasan Method:</h5>
+                            <ul>
+                                <li><strong>index()</strong> - Menampilkan semua data mahasiswa</li>
+                                <li><strong>create()</strong> - Menampilkan form tambah data</li>
+                                <li><strong>store()</strong> - Menyimpan data baru dari form</li>
+                                <li><strong>show()</strong> - Menampilkan detail data</li>
+                                <li><strong>edit()</strong> - Menampilkan form edit data</li>
+                                <li><strong>update()</strong> - Memperbarui data yang diedit</li>
+                                <li><strong>destroy()</strong> - Menghapus data</li>
+                            </ul>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-lightbulb me-2"></i>Konsep Penting:</h6>
+                            <ul>
+                                <li><code>compact('data')</code> - Mengirim variable $data ke view</li>
+                                <li><code>$request->input('nama')</code> - Mengambil data dari form input</li>
+                                <li><code>view()</code> - Memuat template Blade</li>
+                                <li>Semua method menerima parameter sesuai kebutuhan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Step 11: Menjalankan Server -->
+                <section id="step11" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-play-circle me-2"></i>Step 11: Menjalankan Server dan Testing</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Jalankan development server dan test aplikasi CRUD yang telah dibuat.</p>
+
+                        <div class="command-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Jalankan Server:</h6>
+                            <pre><code>php artisan serve</code></pre>
+                        </div>
+
+                        <div class="step-box">
+                            <h5><i class="fas fa-check-circle me-2"></i>Testing Aplikasi:</h5>
+                            <ol>
+                                <li>Buka browser dan kunjungi: <code>http://localhost:8000/mahasiswa</code></li>
+                                <li>Anda akan melihat daftar mahasiswa (Andi, Budi, Citra)</li>
+                                <li>Klik "Tambah Mahasiswa" untuk menuju form tambah data</li>
+                                <li>Isi form dan submit, akan muncul pesan konfirmasi</li>
+                                <li>Test semua URL yang tersedia sesuai tabel route</li>
+                            </ol>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-bug me-2"></i>Troubleshooting Common Issues:</h6>
+                            <ul>
+                                <li><strong>404 Error</strong> - Pastikan route sudah terdaftar di routes/web.php</li>
+                                <li><strong>View not found</strong> - Pastikan file view ada di folder yang benar</li>
+                                <li><strong>Class not found</strong> - Jalankan <code>composer dump-autoload</code></li>
+                                <li><strong>Method not exists</strong> - Pastikan method ada di controller</li>
+                            </ul>
+                        </div>
+
+                        <div class="warning-box">
+                            <h6><i class="fas fa-exclamation-triangle me-2"></i>Next Steps:</h6>
+                            <p>Setelah berhasil membuat CRUD dasar, lanjutkan dengan:</p>
+                            <ul>
+                                <li>Integrasi dengan database menggunakan Model dan Migration</li>
+                                <li>Form validation yang lebih robust</li>
+                                <li>Authentication dan Authorization</li>
+                                <li>File upload dan storage</li>
+                                <li>API development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Custom Routes Section -->
+                <section id="custom-routes" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-puzzle-piece me-2"></i>Tambahan — Custom Route dengan Parameter</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="custom-route-box">
+                            <p>Kamu bisa membuat route dinamis dengan parameter, misalnya:</p>
+
+                            <div class="code-example">
+                                <h6><i class="fas fa-code me-2"></i>Contoh Route dengan Parameter:</h6>
+                                <pre><code>Route::get('/laporan/{nama}/{nim}', function ($nama, $nim) {
+    return "Nama: $nama, NIM: $nim";
+});</code></pre>
+                            </div>
+
+                            <div class="step-box">
+                                <h6><i class="fas fa-globe me-2"></i>Akses di browser:</h6>
+                                <pre><code>http://127.0.0.1:8000/laporan/Fakhir/1234567890</code></pre>
+                                <p>Hasil:</p>
+                                <pre><code>Nama: Fakhir, NIM: 1234567890</code></pre>
+                            </div>
+
+                            <div class="note-box">
+                                <h6><i class="fas fa-sticky-note me-2"></i>Catatan:</h6>
+                                <ul>
+                                    <li>Parameter dalam <code>{ }</code> disebut route parameter</li>
+                                    <li>Bisa digunakan untuk mengambil data dinamis dari URL</li>
+                                    <li>Urutan parameter harus sesuai dengan urutan di function</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Migration Section -->
+                <section id="migration" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-database me-2"></i>Tambahan — Database Migration Laravel</h3>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="custom-route-box">
+                            <h5>Apa itu Migration?</h5>
+                            <p>
+                                <strong>Migration</strong> adalah fitur Laravel yang digunakan untuk mengelola struktur database menggunakan kode PHP.
+                                Dengan migration, kita dapat membuat tabel, menambah kolom, mengubah struktur tabel, maupun memasukkan data awal
+                                tanpa harus melakukan <strong>export atau import file SQL</strong>.
+                            </p>
+
+                            <p>
+                                Migration sangat penting dalam pengembangan tim karena struktur database dapat dibagikan kepada developer lain
+                                hanya dengan menjalankan perintah migration.
+                            </p>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-lightbulb me-2"></i>Kapan Migration Digunakan?</h6>
+                            <ul>
+                                <li>Ketika membuat <strong>tabel baru</strong></li>
+                                <li>Ketika menambahkan <strong>kolom baru</strong> pada tabel</li>
+                                <li>Ketika ingin memasukkan <strong>data awal (statis)</strong></li>
+                                <li>Ketika ingin mengubah struktur database tanpa manual SQL</li>
+                            </ul>
+                        </div>
+
+                        <!-- Membuat Migration -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-terminal me-2"></i>Membuat Migration</h6>
+
+                            <p>Untuk membuat migration baru gunakan perintah artisan berikut:</p>
+
+                            <div class="code-example">
+                <pre><code>php artisan make:migration create_mahasiswa_table</code></pre>
+                            </div>
+
+                            <p>
+                                Perintah tersebut akan membuat file migration baru di folder:
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>database/migrations/</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Contoh Migration -->
+                        <div class="code-example">
+                            <h6><i class="fas fa-code me-2"></i>Contoh Migration Membuat Tabel Mahasiswa</h6>
+
+                <pre><code>use Illuminate\Database\Migrations\Migration;
+                use Illuminate\Database\Schema\Blueprint;
+                use Illuminate\Support\Facades\Schema;
+
+                return new class extends Migration
+                {
+                    public function up()
+                    {
+                        Schema::create('mahasiswa', function (Blueprint $table) {
+                            $table->id();
+                            $table->string('nim');
+                            $table->string('nama');
+                            $table->string('jurusan');
+                            $table->timestamps();
+                        });
+                    }
+
+                    public function down()
+                    {
+                        Schema::dropIfExists('mahasiswa');
+                    }
+                };</code></pre>
+
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-sticky-note me-2"></i>Penjelasan:</h6>
+                            <ul>
+                                <li><strong>up()</strong> → dijalankan ketika migration dijalankan</li>
+                                <li><strong>down()</strong> → dijalankan ketika migration dibatalkan (rollback)</li>
+                                <li><strong>Schema::create()</strong> → membuat tabel baru</li>
+                                <li><strong>$table->string()</strong> → membuat kolom tipe string</li>
+                                <li><strong>$table->timestamps()</strong> → membuat kolom <code>created_at</code> dan <code>updated_at</code></li>
+                            </ul>
+                        </div>
+
+                        <!-- Menjalankan Migration -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-play me-2"></i>Menjalankan Migration</h6>
+
+                            <p>Untuk menjalankan migration dan membuat tabel di database:</p>
+
+                            <div class="code-example">
+                <pre><code>php artisan migrate</code></pre>
+                            </div>
+
+                            <p>Perintah ini akan menjalankan semua file migration yang ada di folder:</p>
+
+                            <div class="code-example">
+                <pre><code>database/migrations</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Rollback -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-undo me-2"></i>Membatalkan Migration (Rollback)</h6>
+
+                            <p>Jika ingin membatalkan migration terakhir:</p>
+
+                            <div class="code-example">
+                <pre><code>php artisan migrate:rollback</code></pre>
+                            </div>
+
+                            <p>Perintah ini akan menjalankan fungsi <code>down()</code>.</p>
+                        </div>
+
+                        <!-- Menambah Kolom -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-plus-circle me-2"></i>Menambahkan Kolom Baru</h6>
+
+                            <p>Jika ingin menambahkan kolom baru pada tabel yang sudah ada:</p>
+
+                            <div class="code-example">
+                <pre><code>php artisan make:migration add_alamat_to_mahasiswa_table</code></pre>
+                            </div>
+
+                            <p>Contoh isi migration:</p>
+
+                            <div class="code-example">
+                <pre><code>Schema::table('mahasiswa', function (Blueprint $table) {
+                    $table->string('alamat');
+                });</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Insert Data Statis -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-database me-2"></i>Insert Data Awal (Data Statis)</h6>
+
+                            <p>
+                                Kadang kita perlu memasukkan data awal seperti data kategori,
+                                data role user, atau data master. Data ini bisa dimasukkan
+                                menggunakan migration.
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>DB::table('mahasiswa')->insert([
+                    [
+                        'nim' => '22001',
+                        'nama' => 'Andi',
+                        'jurusan' => 'Informatika'
+                    ],
+                    [
+                        'nim' => '22002',
+                        'nama' => 'Budi',
+                        'jurusan' => 'Sistem Informasi'
+                    ]
+                ]);</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="note-box">
+                            <h6><i class="fas fa-sticky-note me-2"></i>Kesimpulan:</h6>
+                            <ul>
+                                <li>Migration digunakan untuk mengelola struktur database menggunakan kode</li>
+                                <li>Tidak perlu lagi export/import file SQL</li>
+                                <li>Struktur database dapat dibagikan kepada developer lain dengan mudah</li>
+                                <li>Cukup menjalankan perintah <code>php artisan migrate</code></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Tips CRUD Section -->
+                <section id="tips-crud" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-shield-alt me-2"></i>Tambahan — Tips & Best Practice CRUD Laravel</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="custom-route-box">
+                            <p>
+                                Saat membuat fitur <strong>CRUD (Create, Read, Update, Delete)</strong>, penting untuk memperhatikan 
+                                aspek keamanan, integritas data, dan performa sistem. Berikut beberapa praktik yang umum digunakan 
+                                dalam pengembangan aplikasi Laravel agar sistem lebih aman, stabil, dan profesional.
+                            </p>
+                        </div>
+
+                        <!-- Soft Delete -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-trash-restore me-2"></i>Menggunakan Soft Delete</h6>
+
+                            <p>
+                                <strong>Soft Delete</strong> memungkinkan data yang dihapus tidak benar-benar dihapus dari database,
+                                tetapi hanya diberi tanda bahwa data tersebut sudah dihapus. Laravel menyimpan informasi ini
+                                pada kolom <code>deleted_at</code>.
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>use Illuminate\Database\Eloquent\SoftDeletes;
+
+                class Mahasiswa extends Model
+                {
+                    use SoftDeletes;
+                }</code></pre>
+                            </div>
+
+                            <p>Tambahkan kolom soft delete pada migration:</p>
+
+                            <div class="code-example">
+                <pre><code>$table->softDeletes();</code></pre>
+                            </div>
+
+                            <p>
+                                Dalam implementasi nyata, <strong>Controller</strong> biasanya mengatur logika soft delete,
+                                seperti menampilkan data aktif, menampilkan data yang sudah dihapus,
+                                melakukan restore, dan menghapus permanen.
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>// menampilkan data termasuk yang sudah dihapus
+                $users = User::withTrashed()->get();
+
+                // hanya data yang sudah dihapus
+                $deleted = User::onlyTrashed()->get();
+
+                // restore data
+                User::withTrashed()->find($id)->restore();
+
+                // hapus permanen
+                User::withTrashed()->find($id)->forceDelete();</code></pre>
+                            </div>
+
+                            <div class="note-box">
+                                <h6>Manfaat Soft Delete:</h6>
+                                <ul>
+                                    <li><strong>Recovery Data</strong> → data yang terhapus bisa dikembalikan</li>
+                                    <li><strong>Audit Trail</strong> → histori perubahan data tetap tersimpan</li>
+                                    <li><strong>Historisitas</strong> → memudahkan analisis perubahan data</li>
+                                    <li><strong>Keamanan</strong> → data tidak langsung hilang secara permanen</li>
+                                    <li><strong>Menghindari error relasi</strong> jika data masih digunakan tabel lain</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Constraint Database -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-link me-2"></i>Menggunakan Constraint pada Database</h6>
+
+                            <p>
+                                Dalam pengisian data ke dalam tabel database, kita menginginkan data yang <strong>akurat dan konsisten</strong>.
+                                Untuk itu digunakan aturan yang disebut <strong>constraint</strong>.
+                            </p>
+
+                            <p>
+                                Constraint adalah aturan pada kolom atau tabel yang memastikan data yang masuk
+                                memenuhi kondisi tertentu sehingga integritas data tetap terjaga.
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>$table->string('email')->unique();
+                $table->foreignId('user_id')->constrained()->onDelete('cascade');</code></pre>
+                            </div>
+
+                            <div class="note-box">
+                                <h6>Manfaat Constraint:</h6>
+                                <ul>
+                                    <li>Mencegah data tidak valid masuk ke database</li>
+                                    <li>Menjaga hubungan antar tabel</li>
+                                    <li>Menghindari data orphan (data tanpa relasi)</li>
+                                    <li>Meningkatkan konsistensi dan integritas data</li>
+                                </ul>
+                            </div>
+
+                            <p>Beberapa jenis constraint yang umum digunakan:</p>
+
+                            <ul>
+                                <li><strong>NOT NULL</strong> → kolom tidak boleh kosong</li>
+                                <li><strong>PRIMARY KEY</strong> → identitas unik setiap baris</li>
+                                <li><strong>FOREIGN KEY</strong> → menghubungkan antar tabel</li>
+                                <li><strong>UNIQUE</strong> → memastikan tidak ada data duplikat</li>
+                                <li><strong>CHECK</strong> → memastikan nilai memenuhi kondisi tertentu</li>
+                                <li><strong>DEFAULT</strong> → memberikan nilai otomatis jika tidak diisi</li>
+                            </ul>
+                        </div>
+
+                        <!-- UUID vs Auto Increment -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-id-card me-2"></i>Auto Increment vs UUID</h6>
+
+                            <p>
+                                Dalam database biasanya primary key menggunakan <strong>auto increment</strong>.
+                                Namun pada sistem modern sering juga digunakan <strong>UUID</strong>.
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>$table->id(); // Auto Increment
+
+                $table->uuid('public_id')->unique(); // UUID</code></pre>
+                            </div>
+
+                            <div class="note-box">
+                                <h6>Perbandingan:</h6>
+                                <ul>
+                                    <li><strong>Auto Increment</strong> → lebih ringan dan cepat untuk operasi database</li>
+                                    <li><strong>UUID</strong> → lebih sulit ditebak dan cocok untuk API publik</li>
+                                    <li>UUID cocok untuk sistem distributed atau microservice</li>
+                                </ul>
+                            </div>
+
+                            <p>Praktik yang sering digunakan pada sistem besar adalah pola hybrid:</p>
+
+                            <div class="code-example">
+                <pre><code>Schema::create('users', function (Blueprint $table) {
+                    $table->id(); // internal primary key
+                    $table->uuid('public_id')->unique(); // identifier publik
+                    $table->string('name');
+                });</code></pre>
+                            </div>
+
+                            <p>
+                                Dengan pola ini, database tetap efisien menggunakan <strong>integer sebagai primary key</strong>,
+                                namun aplikasi menampilkan <strong>UUID sebagai identifier publik</strong>.
+                            </p>
+                        </div>
+
+                        <!-- Jangan tampilkan ID -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-user-secret me-2"></i>Jangan Tampilkan ID Database di UI</h6>
+
+                            <p>
+                                Sebaiknya <strong>jangan menampilkan ID database langsung di URL atau UI</strong>
+                                karena ID auto increment mudah ditebak.
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>Contoh yang tidak disarankan:
+                http://website.com/user/15</code></pre>
+                            </div>
+
+                            <p>User bisa mencoba menebak data lain:</p>
+
+                            <div class="code-example">
+                <pre><code>http://website.com/user/16
+                http://website.com/user/17</code></pre>
+                            </div>
+
+                            <div class="note-box">
+                                <h6>Alternatif yang lebih aman:</h6>
+                                <ul>
+                                    <li>Menggunakan <strong>UUID</strong></li>
+                                    <li>Menggunakan <strong>slug</strong></li>
+                                    <li>Menggunakan <strong>hash id</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- XSS -->
+                        <div class="step-box">
+                            <h6><i class="fas fa-bug me-2"></i>Perlindungan dari XSS (Cross Site Scripting)</h6>
+
+                            <p>
+                                XSS adalah serangan dimana attacker menyisipkan script berbahaya ke halaman web.
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>{{ $nama }}</code></pre>
+                            </div>
+
+                            <p>
+                                Blade Laravel secara otomatis melakukan <strong>escaping HTML</strong>.
+                            </p>
+
+                            <div class="code-example">
+                <pre><code>{!! $nama !!}</code></pre>
+                            </div>
+
+                            <div class="note-box">
+                                <h6>Catatan Penting:</h6>
+                                <ul>
+                                    <li><code>{{ }}</code> aman karena otomatis escape HTML</li>
+                                    <li><code>{!! !!}</code> hanya digunakan jika benar-benar dipercaya</li>
+                                    <li>Gunakan validation dan sanitasi input</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Mass Assignment -->
+                        <div class="step-box">
+            <h6><i class="fas fa-lock me-2"></i>Mass Assignment Vulnerability</h6>
+            <p>
+                <strong>Mass assignment</strong> terjadi ketika aplikasi mengizinkan pengguna mengirimkan parameter tambahan 
+                yang tidak seharusnya, sehingga dapat mengubah field sensitif (misal: <code>is_admin</code>, <code>role_id</code>).
+            </p>
+            <p><strong>Contoh kerentanan:</strong> Endpoint registrasi hanya mengharapkan <code>email</code> dan <code>password</code>, 
+                tetapi penyerang menambahkan <code>role=admin</code> dalam request. Jika aplikasi langsung memetakan semua input ke model, 
+                maka penyerang bisa menjadi admin.</p>
+            <p><strong>Pencegahan di Laravel:</strong></p>
+            <ul>
+                <li>Gunakan properti <code>$fillable</code> pada model untuk mendaftar field yang boleh diisi massal.</li>
+                <li>Alternatif: <code>$guarded</code> untuk melindungi field tertentu.</li>
+                <li>Gunakan <code>Request::only()</code> atau <code>$request->validated()</code> (setelah validasi) untuk membatasi input.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>class User extends Model
+{
+    protected $fillable = ['name', 'email', 'password'];
+}
+
+// Di controller
+User::create($request->only(['name', 'email', 'password']));
+// atau lebih baik dengan form request validation
+$validated = $request->validate([...]);
+User::create($validated);</code></pre>
+            </div>
+            <div class="note-box">
+                <h6>🛡️ Tips</h6>
+                <p>Jangan pernah menggunakan <code>Model::create($request->all())</code> tanpa proteksi fillable/guarded.</p>
+            </div>
+        </div>
+
+                        <!-- Validation -->
+                        <div class="step-box">
+            <h6><i class="fas fa-check-circle me-2"></i>Validasi Data di Sisi Klien (HTML5)</h6>
+            <p>
+                Jangan percaya begitu saja pada input pengguna. Validasi di sisi klien memberikan umpan balik cepat, 
+                namun tetap harus divalidasi ulang di server. HTML5 menyediakan berbagai atribut untuk validasi dasar.
+            </p>
+            <p><strong>Atribut Penting:</strong></p>
+            <ul>
+                <li><code>required</code> → field tidak boleh kosong.</li>
+                <li><code>type="email"</code>, <code>type="number"</code>, <code>type="tel"</code> → memeriksa format.</li>
+                <li><code>min</code>, <code>max</code> → batas angka.</li>
+                <li><code>minlength</code>, <code>maxlength</code> → panjang teks.</li>
+                <li><code>pattern</code> → regex kustom.</li>
+                <li><code>accept</code> → jenis file (untuk upload).</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>&lt;input type="text" name="username" required minlength="3" maxlength="20"&gt;
+&lt;input type="email" name="email" required&gt;
+&lt;input type="number" name="usia" min="17" max="100"&gt;
+&lt;input type="file" name="foto" accept="image/*"&gt;
+&lt;input type="text" name="grade" pattern="[A-F][+-]?|D"&gt;</code></pre>
+            </div>
+            <p>Untuk kustom pesan error, gunakan JavaScript:</p>
+            <div class="code-example">
+                <pre><code>input.addEventListener('invalid', function() {
+    this.setCustomValidity('Isian tidak valid');
+});</code></pre>
+            </div>
+            <div class="note-box">
+                <h6>⚠️ Catatan</h6>
+                <p>Validasi HTML5 hanya untuk kenyamanan pengguna. Tetap lakukan validasi server-side untuk keamanan.</p>
+            </div>
+        </div>
+
+                        <!-- CSRF -->
+                        <div class="step-box">
+            <h6><i class="fas fa-user-secret me-2"></i>CSRF — Ancaman & Pencegahan</h6>
+            <p>
+                CSRF adalah serangan yang memaksa pengguna terautentikasi mengeksekusi aksi yang tidak diinginkan 
+                (misal: ubah password, transfer dana) tanpa sepengetahuannya. Penyerang memanfaatkan sesi aktif korban.
+            </p>
+            <p><strong>Contoh skenario:</strong> Pengguna membuka situs jahat yang memuat gambar dengan src="http://bank.com/transfer?to=attacker&amount=1000". Karena pengguna sudah login di bank, browser otomatis mengirim cookie dan request tersebut dianggap sah.</p>
+            <p><strong>Cara Mencegah di Laravel:</strong></p>
+            <ul>
+                <li>Laravel sudah menyertakan <strong>CSRF token</strong> otomatis untuk setiap form dengan <code>@csrf</code>.</li>
+                <li>Pastikan token divalidasi di server (Laravel menangani secara otomatis).</li>
+                <li>Gunakan metode POST/PUT/DELETE untuk aksi yang mengubah data, bukan GET.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>&lt;form method="POST" action="/transfer"&gt;
+    @csrf
+    &lt;!-- field lainnya --&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+            <div class="note-box">
+                <h6>🔒 Tips Tambahan</h6>
+                <ul>
+                    <li>Set cookie dengan <code>SameSite=Lax</code> atau <code>Strict</code>.</li>
+                    <li>Untuk API stateless, gunakan token (JWT) dan pastikan origin request diverifikasi.</li>
+                </ul>
+            </div>
+        </div>
+
+                        <!-- Index -->
+                        <div class="step-box">
+            <h6><i class="fas fa-tachometer-alt me-2"></i>SQL Index — Mempercepat Query</h6>
+            <p>
+                <strong>Index</strong> adalah struktur database yang mempercepat pencarian data pada kolom tertentu, 
+                seperti indeks di buku. Tanpa index, database melakukan <em>full table scan</em> — lambat untuk tabel besar.
+            </p>
+            <p><strong>Cara Kerja:</strong> Index membuat pointer ke baris data, sehingga query <code>WHERE</code> pada kolom yang di‑index 
+                bisa langsung menemukan data tanpa membaca seluruh tabel.</p>
+            <p><strong>Jenis Index:</strong></p>
+            <ul>
+                <li><strong>Clustered</strong>: mengubah urutan fisik data sesuai index. Hanya satu per tabel (biasanya primary key).</li>
+                <li><strong>Non‑clustered</strong>: struktur terpisah berisi salinan kolom yang di‑index dan pointer ke data. Bisa banyak.</li>
+            </ul>
+            <p><strong>Contoh pembuatan index di Laravel migration:</strong></p>
+            <div class="code-example">
+                <pre><code>Schema::table('users', function (Blueprint $table) {
+    $table->index('email'); // non-clustered
+    $table->unique('email'); // unique index
+});</code></pre>
+            </div>
+            <p><strong>Contoh langsung SQL:</strong></p>
+            <div class="code-example">
+                <pre><code>CREATE INDEX idx_users_email ON users(email);</code></pre>
+            </div>
+            <div class="note-box">
+                <h6>📊 Kapan Perlu Index?</h6>
+                <ul>
+                    <li>Kolom yang sering muncul di <code>WHERE</code>, <code>JOIN</code>, atau <code>ORDER BY</code>.</li>
+                    <li>Hindari index pada kolom yang jarang digunakan atau nilai unik sedikit (misal gender).</li>
+                    <li>Terlalu banyak index bisa memperlambat INSERT/UPDATE/DELETE.</li>
+                </ul>
+            </div>
+        </div>
+
+                        <!-- Logging -->
+                        <div class="step-box">
+            <h6><i class="fas fa-clipboard-list me-2"></i>Logging Efektif untuk Observability</h6>
+            <p>
+                Logging bukan sekadar <code>console.log()</code>. Di sistem modern (microservices, cloud), log harus 
+                <strong>terstruktur</strong> (JSON) dan <strong>terpusat</strong> agar mudah dicari dan dianalisis.
+            </p>
+            <p><strong>Level Log:</strong> DEBUG, INFO, WARN, ERROR, FATAL.</p>
+            <p><strong>Structured Logging (JSON):</strong></p>
+            <div class="code-example">
+                <pre><code>{
+  "timestamp": "2025-03-17T04:20:00Z",
+  "level": "error",
+  "service": "order-service",
+  "request_id": "uuid-123",
+  "message": "Database connection lost",
+  "user_id": 42
+}</code></pre>
+            </div>
+            <p><strong>Centralized Logging:</strong> ELK Stack, Loki, Datadog — kumpulkan semua log di satu tempat.</p>
+            <p><strong>Best Practices:</strong></p>
+            <ul>
+                <li>Sertakan <code>request_id</code> untuk melacak request lintas layanan.</li>
+                <li>Jangan log data sensitif (password, token).</li>
+                <li>Gunakan pustaka seperti <strong>Pino</strong> (Node.js), <strong>Monolog</strong> (PHP), <strong>Logrus</strong> (Go).</li>
+                <li>Async logging agar tidak blok performa.</li>
+            </ul>
+            <p>Contoh dengan Laravel (menggunakan <code>Log::</code>):</p>
+            <div class="code-example">
+                <pre><code>use Illuminate\Support\Facades\Log;
+
+Log::channel('stack')->info('User logged in', [
+    'user_id' => $user->id,
+    'ip' => request()->ip()
+]);</code></pre>
+            </div>
+            <div class="note-box">
+                <h6>🔍 Manfaat Logging Efektif</h6>
+                <ul>
+                    <li>Debugging lebih cepat</li>
+                    <li>Audit trail untuk keamanan</li>
+                    <li>Pemantauan performa real-time</li>
+                </ul>
+            </div>
+        </div>
+
+                    </div>
+                </section>
+
+                <!-- Tugas Laravel Dasar Section
+                <section id="tugas-laravel-dasar" class="module-card">
+                    <div class="card-header card-header-custom">
+                        <h3 class="mb-0"><i class="fas fa-tasks me-2"></i>Tugas — Praktikum Laravel Dasar (CRUD Mahasiswa)</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="custom-route-box">
+                            <p>
+                                Pada tugas ini mahasiswa diminta membuat aplikasi sederhana menggunakan Laravel 
+                                dengan fitur <strong>CRUD (Create, Read, Update, Delete)</strong>.
+                                Aplikasi yang dibuat adalah sistem <strong>Manajemen Data Mahasiswa</strong>.
+                            </p>
+
+                            <div class="note-box">
+                                <h6><i class="fas fa-info-circle me-2"></i>Tujuan Pembelajaran:</h6>
+                                <ul>
+                                    <li>Memahami konsep MVC pada Laravel</li>
+                                    <li>Menggunakan migration untuk membuat tabel database</li>
+                                    <li>Menggunakan controller untuk mengelola logika aplikasi</li>
+                                    <li>Menggunakan blade template untuk menampilkan data</li>
+                                    <li>Mengimplementasikan fitur CRUD sederhana</li>
+                                </ul>
+                            </div>
+
+                            <div class="step-box">
+                                <h6><i class="fas fa-folder-open me-2"></i>Langkah 1 — Membuat Project Laravel</h6>
+
+                                <p>Buat project Laravel baru dengan nama <strong>laravel-mahasiswa</strong>.</p>
+
+                                <div class="code-example">
+                <pre><code>composer create-project laravel/laravel laravel-mahasiswa</code></pre>
+                                </div>
+
+                                <p>Masuk ke folder project:</p>
+
+                                <div class="code-example">
+                <pre><code>cd laravel-mahasiswa</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="step-box">
+                                <h6><i class="fas fa-database me-2"></i>Langkah 2 — Membuat Migration</h6>
+
+                                <p>Buat migration untuk tabel <strong>mahasiswa</strong>.</p>
+
+                                <div class="code-example">
+                <pre><code>php artisan make:migration create_mahasiswa_table</code></pre>
+                                </div>
+
+                                <p>Struktur tabel:</p>
+
+                                <div class="code-example">
+                <pre><code>id
+                nim
+                nama
+                jurusan
+                created_at
+                updated_at</code></pre>
+                                </div>
+
+                                <p>Setelah selesai, jalankan migration:</p>
+
+                                <div class="code-example">
+                <pre><code>php artisan migrate</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="step-box">
+                                <h6><i class="fas fa-cogs me-2"></i>Langkah 3 — Membuat Model dan Controller</h6>
+
+                                <p>Buat model dan controller untuk mahasiswa.</p>
+
+                                <div class="code-example">
+                <pre><code>php artisan make:model Mahasiswa -mcr</code></pre>
+                                </div>
+
+                                <p>Perintah ini akan membuat:</p>
+
+                                <ul>
+                                    <li>Model Mahasiswa</li>
+                                    <li>Migration</li>
+                                    <li>Controller MahasiswaController</li>
+                                    <li>Method CRUD otomatis</li>
+                                </ul>
+                            </div>
+
+                            <div class="step-box">
+                                <h6><i class="fas fa-route me-2"></i>Langkah 4 — Membuat Route</h6>
+
+                                <p>Tambahkan route berikut pada file <code>routes/web.php</code>:</p>
+
+                                <div class="code-example">
+                <pre><code>use App\Http\Controllers\MahasiswaController;
+
+                Route::resource('mahasiswa', MahasiswaController::class);</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="step-box">
+                                <h6><i class="fas fa-table me-2"></i>Langkah 5 — Membuat View Blade</h6>
+
+                                <p>Buat folder berikut:</p>
+
+                                <div class="code-example">
+                <pre><code>resources/views/mahasiswa</code></pre>
+                                </div>
+
+                                <p>Buat file berikut:</p>
+
+                                <ul>
+                                    <li>index.blade.php</li>
+                                    <li>create.blade.php</li>
+                                    <li>edit.blade.php</li>
+                                </ul>
+
+                                <p>Gunakan blade untuk menampilkan data mahasiswa.</p>
+                            </div>
+
+                            <div class="step-box">
+                                <h6><i class="fas fa-play me-2"></i>Langkah 6 — Menjalankan Aplikasi</h6>
+
+                                <p>Jalankan server Laravel:</p>
+
+                                <div class="code-example">
+                <pre><code>php artisan serve</code></pre>
+                                </div>
+
+                                <p>Akses aplikasi melalui browser:</p>
+
+                                <div class="code-example">
+                <pre><code>http://127.0.0.1:8000/mahasiswa</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="note-box">
+                                <h6><i class="fas fa-clipboard-check me-2"></i>Ketentuan Tugas:</h6>
+                                <ul>
+                                    <li>Aplikasi harus memiliki fitur <strong>Create, Read, Update, Delete</strong></li>
+                                    <li>Gunakan <strong>validation</strong> untuk input data</li>
+                                    <li>Gunakan <strong>Blade template</strong></li>
+                                    <li>Gunakan <strong>migration</strong> untuk membuat tabel</li>
+                                    <li>Tambahkan minimal <strong>5 data mahasiswa</strong></li>
+                                </ul>
+                            </div>
+
+                            <div class="note-box">
+                                <h6><i class="fas fa-star me-2"></i>Bonus Nilai:</h6>
+                                <ul>
+                                    <li>Menambahkan fitur <strong>pencarian mahasiswa</strong></li>
+                                    <li>Menggunakan <strong>Soft Delete</strong></li>
+                                    <li>Menambahkan <strong>pagination</strong></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fab fa-laravel me-2"></i>Praktikum Laravel</h5>
+                    <p>Panduan praktikum pemrograman web dengan Laravel framework.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p>&copy; 2026 Praktikum Pemrograman Web. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling untuk navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Update active nav link
+        window.addEventListener('scroll', function() {
+            let sections = document.querySelectorAll('section');
+            let navLinks = document.querySelectorAll('.nav-modules .nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Copy code functionality
+        document.querySelectorAll('.code-example, .command-box').forEach(example => {
+            const button = document.createElement('button');
+            button.innerHTML = '<i class="fas fa-copy"></i>';
+            button.className = 'btn btn-sm btn-outline-light position-absolute';
+            button.style.top = '10px';
+            button.style.right = '10px';
+            button.addEventListener('click', function() {
+                const code = this.parentElement.querySelector('code')?.innerText || 
+                           this.parentElement.innerText.replace('Copy', '');
+                navigator.clipboard.writeText(code).then(() => {
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-copy"></i>';
+                    }, 2000);
+                });
+            });
+            example.style.position = 'relative';
+            example.appendChild(button);
+        });
+    </script>
+</body>
+</html>
